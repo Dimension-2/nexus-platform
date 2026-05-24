@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus – Meetings</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="metting.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-monogram">V</div>
+        <div class="brand-name">Nexus</div>
+        <div class="brand-sub">Investment Platform</div>
+        <div class="brand-rule"></div>
+      </div>
+      <nav class="nav-section">
+        <div class="nav-label">Main Menu</div>
+        <a class="nav-item" href="dashboard.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-text">Overview</span>
+        </a>
+        <a class="nav-item active" href="meetings.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          <span class="nav-text">Meetings</span><span class="nav-badge">2</span>
+        </a>
+        <a class="nav-item" href="video-rooms.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="23 7 16 12 23 17 23 7" />
+            <rect x="1" y="5" width="15" height="14" rx="2" />
+          </svg>
+          <span class="nav-text">Video Rooms</span>
+        </a>
+        <a class="nav-item" href="documents.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          <span class="nav-text">Documents</span
+          ><span class="nav-badge">5</span>
+        </a>
+        <a class="nav-item" href="payments.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          <span class="nav-text">Payments</span>
+        </a>
+        <div class="nav-label" style="margin-top: 1rem">Portfolio</div>
+        
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-row">
+          <div class="user-avatar">V</div>
+          <div class="user-info">
+            <div class="user-name">Welcome To Nexus</div>
+            <div class="user-role">System Administrator</div>
+          </div>
+        </div>
+        <button class="logout-btn">Sign Out</button>
+
+        <div id="custom-logout-modal" class="modal-overlay">
+          <div class="modal-box">
+            <div id="modal-content">
+              <h3>Sign Out</h3>
+              <p>Are you sure you want to log out of your account?</p>
+              <div class="modal-buttons">
+                <button class="btn-no" id="cancel-logout">No, stay</button>
+                <button class="btn-yes" id="confirm-logout">
+                  Yes, log out
+                </button>
+              </div>
+            </div>
+
+            <div id="modal-loader" style="display: none">
+              <div class="spinner"></div>
+              <p>Logging out...</p>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          /* Dark overlay with background blur */
+          .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px); /* The glass effect */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+
+            /* Hidden by default with smooth transitions */
+            opacity: 0;
+            visibility: hidden;
+            transition:
+              opacity 0.3s ease,
+              visibility 0.3s ease;
+          }
+
+          /* Triggers the fade-in */
+          .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+          }
+
+          /* The message box itself */
+          .modal-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+            /* Smooth pop-up scaling animation */
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
+
+          /* Triggers the pop-up bounce */
+          .modal-overlay.active .modal-box {
+            transform: translateY(0) scale(1);
+          }
+
+          .modal-box h3 {
+            margin: 0 0 10px 0;
+            color: #1a1a1a;
+            font-size: 22px;
+          }
+
+          .modal-box p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.5;
+          }
+
+          .modal-buttons {
+            display: flex;
+            gap: 15px;
+          }
+
+          .modal-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          }
+
+          /* Button Styles */
+          .btn-no {
+            background: #f0f0f0;
+            color: #333;
+          }
+          .btn-no:hover {
+            background: #e4e4e4;
+          }
+
+          .btn-yes {
+            background: #1a1a1a; /* Dark theme button */
+            color: white;
+          }
+          .btn-yes:hover {
+            background: #333333;
+          }
+
+          /* The Loading Spinner */
+          .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1a1a1a;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+          }
+
+          #modal-loader p {
+            margin: 0;
+            font-weight: 600;
+            color: #1a1a1a;
+          }
+
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+
+        <script>
+          // Get your specific button
+          const logoutBtn = document.querySelector(".logout-btn");
+
+          // Get the pop-up elements
+          const modal = document.getElementById("custom-logout-modal");
+          const cancelBtn = document.getElementById("cancel-logout");
+          const confirmBtn = document.getElementById("confirm-logout");
+          const modalContent = document.getElementById("modal-content");
+          const modalLoader = document.getElementById("modal-loader");
+
+          // When your "Sign Out" button is clicked -> Show the modal
+          if (logoutBtn) {
+            logoutBtn.addEventListener("click", (e) => {
+              e.preventDefault(); // Stop standard button behavior
+
+              // Reset the modal content
+              modalContent.style.display = "block";
+              modalLoader.style.display = "none";
+
+              // Make the modal appear
+              modal.classList.add("active");
+            });
+          }
+
+          // When "No" is clicked -> Hide the modal
+          cancelBtn.addEventListener("click", () => {
+            modal.classList.remove("active");
+          });
+
+          // When "Yes" is clicked -> Show loader, then redirect
+          confirmBtn.addEventListener("click", () => {
+            // Hide the question, show the spinning circle
+            modalContent.style.display = "none";
+            modalLoader.style.display = "block";
+
+            // Wait 1.5 seconds for the high-end loading feel, then redirect to your link
+            setTimeout(() => {
+              window.location.href = "http://localhost:5173/index.html";
+            }, 1500);
+          });
+        </script>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <div class="topbar-eyebrow">Dashboard · Meetings</div>
+          <div class="topbar-title">Your <em>Schedule</em></div>
+        </div>
+        <div class="topbar-right">
+          <span class="topbar-date" id="cd"></span>
+          <button class="gold-action-btn">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            New Meeting
+          </button>
+        </div>
+      </header>
+
+      <div class="content" style="margin-top: 40px">
+        <div
+          id="status-box"
+          class="status-msg"
+          style="
+            display: none;
+            padding: 10px;
+            margin-bottom: 20px;
+            background: #fffdf5;
+            border: 1px solid #d4af37;
+            text-align: center;
+            border-radius: 4px;
+            color: #b8860b;
+            font-weight: 500;
+          "
+        ></div>
+
+        <div class="mtg-stats">
+          <div class="mstat">
+            <div class="mstat-lbl">Pending</div>
+            <div class="mstat-val" id="stat-today">0</div>
+          </div>
+          <div class="mstat">
+            <div class="mstat-lbl">Completed</div>
+            <div
+              class="mstat-val"
+              id="stat-completed"
+              style="color: var(--gold, #d4af37)"
+            >
+              0
+            </div>
+          </div>
+        </div>
+
+        <form id="meeting-form" class="elevated-form">
+          <input type="text" id="title" placeholder="Meeting Title" required />
+          <input type="number" id="duration" placeholder="Mins" required />
+          <button type="submit" style="cursor: pointer">Schedule</button>
+        </form>
+
+        <div
+          class="mtg-list"
+          id="meetings-list"
+          style="
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+          "
+        ></div>
+      </div>
+    </main>
+
+    <script>
+      // 1. Array of random icons to choose from
+      const randomIcons = [
+        // Video
+        `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>`,
+        // Calendar
+        `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+        // Coffee/Break
+        `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>`,
+        // Briefcase
+        `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`,
+      ];
+
+      // 2. Initialize state using Local Storage (works without a backend server)
+      let meetingsData =
+        JSON.parse(localStorage.getItem("nexus_meetings")) || [];
+
+      function saveMeetings() {
+        localStorage.setItem("nexus_meetings", JSON.stringify(meetingsData));
+      }
+
+      function showMsg(text) {
+        const box = document.getElementById("status-box");
+        box.innerText = text;
+        box.style.display = "block";
+        setTimeout(() => (box.style.display = "none"), 3000);
+      }
+
+      function renderUI() {
+        const list = document.getElementById("meetings-list");
+
+        // Update Stats dynamically
+        const pendingCount = meetingsData.filter(
+          (m) => m.status === "pending",
+        ).length;
+        const completedCount = meetingsData.filter(
+          (m) => m.status === "completed",
+        ).length;
+
+        document.getElementById("stat-today").textContent = pendingCount;
+        document.getElementById("stat-completed").textContent = completedCount;
+
+        // Render the list of meeting cards
+        if (meetingsData.length === 0) {
+          list.innerHTML = `<div style="text-align:center; color:#888; padding: 20px;">No meetings scheduled yet.</div>`;
+          return;
+        }
+
+        list.innerHTML = meetingsData
+          .map(
+            (m) => `
+          <div class="mtg-card" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #fff; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); transition: transform 0.2s;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="color: var(--gold, #d4af37); background: #fbfbf9; padding: 10px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                ${m.icon}
+              </div>
+              <div>
+                <div style="font-weight: 600; font-family: 'Montserrat', sans-serif; font-size: 1rem; color: #2d2d2d; text-decoration: ${m.status === "completed" ? "line-through" : "none"}; opacity: ${m.status === "completed" ? "0.6" : "1"};">
+                    ${m.title}
+                </div>
+                <div style="font-size: 0.8rem; color: #666; margin-top: 4px;">${m.duration} mins &nbsp;•&nbsp; <span style="text-transform: capitalize; color: ${m.status === "completed" ? "#064e3b" : "#b8860b"}">${m.status}</span></div>
+              </div>
+            </div>
+            <div class="mtg-actions" style="display: flex; gap: 10px;">
+              ${
+                m.status === "pending"
+                  ? `<button class="btn-done" onclick="finishMeeting('${m._id}')" style="background: #eef6f3; color: #064e3b; border: 1px solid #d1e7e0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">Done</button>`
+                  : ""
+              }
+              <button class="btn-delete" onclick="deleteMeeting('${m._id}')" style="background: #fffdf5; color: #d32f2f; border: 1px solid #f7e8a9; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-weight: 600;">Delete</button>
+            </div>
+          </div>
+        `,
+          )
+          .join("");
+      }
+
+      // 3. Handle Form Submit (Add New Meeting)
+      document
+        .getElementById("meeting-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          // Pick a random icon from the array
+          const randomIconSVG =
+            randomIcons[Math.floor(Math.random() * randomIcons.length)];
+
+          const newMeeting = {
+            _id: Date.now().toString(), // Generate a unique ID
+            title: document.getElementById("title").value,
+            duration: document.getElementById("duration").value,
+            status: "pending",
+            icon: randomIconSVG,
+          };
+
+          meetingsData.unshift(newMeeting); // Add to the beginning of the list
+          saveMeetings();
+          renderUI();
+
+          e.target.reset(); // Clear the form
+          showMsg("Meeting scheduled successfully!");
+        });
+
+      // 4. Handle Deleting
+      window.deleteMeeting = function (id) {
+        meetingsData = meetingsData.filter((m) => m._id !== id);
+        saveMeetings();
+        renderUI();
+        showMsg("Meeting removed.");
+      };
+
+      // 5. Handle Completing
+      window.finishMeeting = function (id) {
+        const index = meetingsData.findIndex((m) => m._id === id);
+        if (index !== -1) {
+          meetingsData[index].status = "completed";
+          saveMeetings();
+          renderUI();
+          showMsg("Great job! Meeting completed.");
+        }
+      };
+
+      // Initial load sequence
+      renderUI();
+    </script>
+  </body>
+</html>

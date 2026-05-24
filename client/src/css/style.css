@@ -1,0 +1,212 @@
+/* Reset basic spacing defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0B2F23; /* Deep Forest Green background */
+    color: #F3ECE2; /* Soft Cream text */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Two-column layout container split perfectly down the middle */
+.login-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    max-width: 1440px;
+    background-color: #0B2F23;
+}
+
+/* LEFT BRANDING SIDE */
+.brand-side {
+    flex: 1;
+    background-color: #0B2F23;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-right: 1px solid rgba(194, 159, 92, 0.15); /* Suble gold accent split line */
+}
+
+.brand-content {
+    text-align: center;
+    max-width: 400px;
+}
+
+.logo-icon {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #C29F5C; /* Warm Gold */
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.brand-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #F3ECE2;
+}
+
+.brand-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: #5F7D6B; /* Sage Green */
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.divider {
+    width: 60px;
+    height: 1px;
+    background-color: #C29F5C; /* Gold Line */
+    margin: 30px auto;
+}
+
+.tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #C29F5C;
+}
+
+/* RIGHT FORM SIDE */
+.form-side {
+    flex: 1;
+    background-color: #F3ECE2; /* Soft Cream Background from your image mockup */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 420px;
+    color: #0B2F23; /* Dark green text for clear readability on light cream background */
+}
+
+.form-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.form-instruction {
+    color: #5F7D6B;
+    font-size: 0.95rem;
+    margin-bottom: 35px;
+}
+
+/* INPUT FORM FIELD STYLES */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #0B2F23;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    background-color: transparent;
+    border: 1px solid #5F7D6B;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #0B2F23;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #C29F5C; /* Glow gold on focus interaction */
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ROLE SELECTOR (Radio Buttons layout) */
+.role-group {
+    margin-bottom: 35px;
+}
+
+.role-group label {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.role-sidebar {
+    display: flex;
+    gap: 15px;
+}
+
+.role-selector {
+    display: flex;
+    gap: 15px;
+}
+
+.role-option {
+    flex: 1;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.role-option input {
+    display: none; /* Hide standard ugly bullet radio */
+}
+
+.role-option span {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #5F7D6B;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+/* When a role is chosen, style it with our deep green and gold */
+.role-option input:checked + span {
+    background-color: #0B2F23;
+    color: #F3ECE2;
+    border-color: #C29F5C;
+}
+
+/* PREMIUM INTERACTIVE CTA BUTTON */
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    background-color: #0B2F23;
+    color: #F3ECE2;
+    border: 1px solid #C29F5C;
+    border-radius: 4px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #C29F5C; /* Inverts layout colors elegantly on pointer hover */
+    color: #0B2F23;
+}

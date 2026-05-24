@@ -1,0 +1,158 @@
+/* Reset & Global High-End Polish */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+}
+
+body {
+  background-color: #f8f9f4;
+  font-family: "Inter", sans-serif;
+  color: #091c15;
+  min-height: 100vh;
+}
+
+.luxury-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR: Deep Green */
+.sidebar {
+  width: 280px;
+  background-color: #091c15;
+  color: #f8f9f4;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-block {
+  padding: 3rem 2rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  text-align: center;
+}
+.logo-text {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  color: #d4af37;
+  letter-spacing: 0.3rem;
+}
+.logo-subtext {
+  font-size: 0.6rem;
+  letter-spacing: 0.2rem;
+  color: rgba(248, 249, 244, 0.5);
+  margin-top: 0.5rem;
+}
+
+/* NAV SLIDER EFFECT */
+.nav-menu {
+  list-style: none;
+  margin-top: 2rem;
+}
+.menu-item a {
+  display: block;
+  padding: 1rem 2rem;
+  color: #f8f9f4;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* The Sliding Line */
+.menu-item a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #d4af37;
+  transition: 0.4s ease-in-out;
+}
+.menu-item:hover a::after,
+.menu-item.active a::after {
+  width: 100%;
+}
+.menu-item:hover a {
+  color: #d4af37;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  cursor: pointer;
+  font-size: 0.7rem;
+  letter-spacing: 0.2rem;
+}
+
+/* WORKSPACE: Off-White */
+.workspace {
+  flex-grow: 1;
+  padding: 3rem 4rem;
+}
+.welcome-heading {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.welcome-heading span {
+  color: #d4af37;
+  font-style: italic;
+}
+
+/* CARDS: Tight & Sharp */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+  gap: 2rem;
+}
+
+.data-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s;
+}
+.data-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-3px);
+}
+
+.card-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #888;
+  letter-spacing: 0.15rem;
+}
+.card-value {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  margin-top: 0.5rem;
+  color: #091c15;
+}
+
+.gold-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #d4af37;
+  color: #091c15;
+  border: none;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.1rem;
+  margin-top: auto;
+  cursor: pointer;
+}
+.gold-btn:hover {
+  background: #b89630;
+}

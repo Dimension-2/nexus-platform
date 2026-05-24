@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus – Premium Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <!-- ══ SIDEBAR ══ -->
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-monogram">V</div>
+        <div class="brand-name">Nexus</div>
+        <div class="brand-sub">Investment Platform</div>
+        <div class="brand-rule"></div>
+      </div>
+
+      <nav class="nav-section">
+        <div class="nav-label">Main Menu</div>
+
+        <a class="nav-item active" href="dashboard.html">
+          <!-- home icon -->
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="color: var(--gold)"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span class="nav-text">Overview</span>
+        </a>
+
+        <a class="nav-item" href="meetings.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          <span class="nav-text">Meetings</span>
+          <span class="nav-badge">2</span>
+        </a>
+
+        <a class="nav-item" href="video-rooms.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polygon points="23 7 16 12 23 17 23 7" />
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+          </svg>
+          <span class="nav-text">Video Rooms</span>
+        </a>
+
+        <a class="nav-item" href="documents.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+          <span class="nav-text">Documents</span>
+          <span class="nav-badge">5</span>
+        </a>
+
+        <a class="nav-item" href="payments.html">
+          <svg
+            class="nav-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          <span class="nav-text">Payments</span>
+        </a>
+
+        <div class="nav-label" style="margin-top: 1rem">Portfolio</div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-row">
+          <div class="user-avatar">V</div>
+          <div class="user-info">
+            <div class="user-name">Welcome To Nexus</div>
+            <div class="user-role">System Administrator</div>
+          </div>
+        </div>
+        <button class="logout-btn">Sign Out</button>
+
+        <div id="custom-logout-modal" class="modal-overlay">
+          <div class="modal-box">
+            <div id="modal-content">
+              <h3>Sign Out</h3>
+              <p>Are you sure you want to log out of your account?</p>
+              <div class="modal-buttons">
+                <button class="btn-no" id="cancel-logout">No, stay</button>
+                <button class="btn-yes" id="confirm-logout">
+                  Yes, log out
+                </button>
+              </div>
+            </div>
+
+            <div id="modal-loader" style="display: none">
+              <div class="spinner"></div>
+              <p>Logging out...</p>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          /* Dark overlay with background blur */
+          .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px); /* The glass effect */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+
+            /* Hidden by default with smooth transitions */
+            opacity: 0;
+            visibility: hidden;
+            transition:
+              opacity 0.3s ease,
+              visibility 0.3s ease;
+          }
+
+          /* Triggers the fade-in */
+          .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+          }
+
+          /* The message box itself */
+          .modal-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+            /* Smooth pop-up scaling animation */
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
+
+          /* Triggers the pop-up bounce */
+          .modal-overlay.active .modal-box {
+            transform: translateY(0) scale(1);
+          }
+
+          .modal-box h3 {
+            margin: 0 0 10px 0;
+            color: #1a1a1a;
+            font-size: 22px;
+          }
+
+          .modal-box p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.5;
+          }
+
+          .modal-buttons {
+            display: flex;
+            gap: 15px;
+          }
+
+          .modal-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          }
+
+          /* Button Styles */
+          .btn-no {
+            background: #f0f0f0;
+            color: #333;
+          }
+          .btn-no:hover {
+            background: #e4e4e4;
+          }
+
+          .btn-yes {
+            background: #1a1a1a; /* Dark theme button */
+            color: white;
+          }
+          .btn-yes:hover {
+            background: #333333;
+          }
+
+          /* The Loading Spinner */
+          .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #1a1a1a;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px auto;
+          }
+
+          #modal-loader p {
+            margin: 0;
+            font-weight: 600;
+            color: #1a1a1a;
+          }
+
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+
+        <script>
+          // Get your specific button
+          const logoutBtn = document.querySelector(".logout-btn");
+
+          // Get the pop-up elements
+          const modal = document.getElementById("custom-logout-modal");
+          const cancelBtn = document.getElementById("cancel-logout");
+          const confirmBtn = document.getElementById("confirm-logout");
+          const modalContent = document.getElementById("modal-content");
+          const modalLoader = document.getElementById("modal-loader");
+
+          // When your "Sign Out" button is clicked -> Show the modal
+          if (logoutBtn) {
+            logoutBtn.addEventListener("click", (e) => {
+              e.preventDefault(); // Stop standard button behavior
+
+              // Reset the modal content
+              modalContent.style.display = "block";
+              modalLoader.style.display = "none";
+
+              // Make the modal appear
+              modal.classList.add("active");
+            });
+          }
+
+          // When "No" is clicked -> Hide the modal
+          cancelBtn.addEventListener("click", () => {
+            modal.classList.remove("active");
+          });
+
+          // When "Yes" is clicked -> Show loader, then redirect
+          confirmBtn.addEventListener("click", () => {
+            // Hide the question, show the spinning circle
+            modalContent.style.display = "none";
+            modalLoader.style.display = "block";
+
+            // Wait 1.5 seconds for the high-end loading feel, then redirect to your link
+            setTimeout(() => {
+              window.location.href = "http://localhost:5173/index.html";
+            }, 1500);
+          });
+        </script>
+      </div>
+    </aside>
+
+    <!-- ══ WORKSPACE ══ -->
+    <main class="workspace">
+      <!-- top bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <span class="topbar-eyebrow">Dashboard · Overview</span>
+          <div class="topbar-title">Welcome back, <em>Armaghan</em></div>
+        </div>
+        <div class="topbar-right">
+          <span class="topbar-date" id="cd"></span>
+          <div class="notif-btn">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--text-mid)"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            <span class="notif-dot"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- content -->
+      <div class="content">
+        <!-- stat cards -->
+        <div class="section-header">
+          <span class="section-title">Portfolio Overview</span>
+        </div>
+
+        <div class="stats-row" id="real-time-dashboard">
+          <div
+            class="stat-card accent-card anim-in"
+            style="animation-delay: 0s"
+          >
+            <div class="stat-label">Local Time</div>
+            <div class="stat-value" id="live-clock">
+              --<span class="blink">:</span>--
+            </div>
+            <div class="stat-trend" id="clock-ampm">Updating...</div>
+          </div>
+
+          <div class="stat-card anim-in" style="animation-delay: 0.15s">
+            <div class="stat-label">Today's Date</div>
+            <div class="stat-value" id="live-date" style="font-size: 1.8rem">
+              --/--/----
+            </div>
+            <div class="stat-trend gold" id="live-day">Loading...</div>
+          </div>
+
+          <div class="stat-card anim-in" style="animation-delay: 0.3s">
+            <div class="stat-label">Current Temp</div>
+            <div class="stat-value" id="weather-val">--°C</div>
+            <div class="stat-trend up" id="weather-trend">
+              Wah, PK • Fetching...
+            </div>
+          </div>
+
+          <div class="stat-card anim-in" style="animation-delay: 0.45s">
+            <div class="stat-label">Session Time</div>
+            <div class="stat-value" id="session-time" style="font-size: 2.2rem">
+              00:00
+            </div>
+            <div class="stat-trend up">Live Uptime</div>
+          </div>
+        </div>
+
+        <style>
+          /* Container Grid */
+          .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          }
+
+          /* Base Card Styling - Solid Colors, Sharp Edges */
+          .stat-card {
+            background: #0f2214; /* The exact solid dark green from your image */
+            padding: 1.8rem;
+            border-radius: 0; /* Perfectly sharp edges */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Clean, grounded shadow */
+            border: 1px solid rgba(197, 160, 89, 0.1); /* Very subtle gold line */
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: all 0.3s ease-out;
+            cursor: default;
+            opacity: 0;
+            transform: translateY(20px);
+          }
+
+          /* Sharp Hover Lift */
+          .stat-card:hover {
+            transform: translateY(-6px);
+            border: 1px solid rgba(197, 160, 89, 0.4); /* Border brightens on hover */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+          }
+
+          /* Premium Accent Card (For the Clock) - NO GRADIENTS */
+          .stat-card.accent-card {
+            background: #0b1a0f; /* Just a slightly deeper solid tone for contrast */
+            border: 1px solid #c5a059; /* Prominent solid gold border */
+          }
+
+          /* Typography */
+          .stat-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #8fa094; /* Soft muted green-grey for legibility */
+          }
+
+          .stat-value {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.1;
+          }
+
+          .accent-card .stat-value {
+            color: #c5a059; /* Solid gold text for clock */
+          }
+
+          .stat-trend {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            letter-spacing: 0.05em;
+          }
+
+          /* Trend Status Colors */
+          .stat-trend.up {
+            color: #4caf50;
+          } /* Sharp Green */
+          .stat-trend.gold {
+            color: #c5a059;
+          } /* Gold */
+          .accent-card .stat-trend {
+            color: #ffffff;
+            opacity: 0.7;
+          }
+
+          /* Animations */
+          .anim-in {
+            animation: fadeSlideUp 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1);
+          }
+          .blink {
+            animation: blinker 1s step-start infinite; /* Stepped blink for sharper feel */
+          }
+
+          @keyframes fadeSlideUp {
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          @keyframes blinker {
+            50% {
+              opacity: 0;
+            }
+          }
+        </style>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            // 1. Live Clock Logic
+            function updateClock() {
+              const now = new Date();
+              let hours = now.getHours();
+              let minutes = now.getMinutes();
+              const ampm = hours >= 12 ? "PM" : "AM";
+
+              hours = hours % 12 || 12; // 12-hour format
+              minutes = minutes < 10 ? "0" + minutes : minutes;
+
+              document.getElementById("live-clock").innerHTML =
+                `${hours}<span class="blink">:</span>${minutes}`;
+              document.getElementById("clock-ampm").innerText =
+                `Live • ${ampm}`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock(); // Initial call
+
+            // 2. Live Date Logic
+            function updateDate() {
+              const now = new Date();
+              const options = {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              };
+              const days = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+              ];
+
+              document.getElementById("live-date").innerText =
+                now.toLocaleDateString("en-US", options);
+              document.getElementById("live-day").innerText =
+                days[now.getDay()];
+            }
+            updateDate();
+
+            // 3. Live Weather Logic (Free Open-Meteo API)
+            async function fetchWeather() {
+              try {
+                const res = await fetch(
+                  "https://api.open-meteo.com/v1/forecast?latitude=33.77&longitude=72.75&current_weather=true",
+                );
+                const data = await res.json();
+                const temp = Math.round(data.current_weather.temperature);
+
+                document.getElementById("weather-val").innerText = `${temp}°C`;
+                document.getElementById("weather-trend").innerText =
+                  "Wah, PK • Live";
+              } catch (error) {
+                document.getElementById("weather-val").innerText = "--°C";
+                document.getElementById("weather-trend").innerText =
+                  "Weather Offline";
+              }
+            }
+            fetchWeather();
+            setInterval(fetchWeather, 300000); // Update weather every 5 minutes
+
+            // 4. Session Uptime Timer Logic
+            let secondsActive = 0;
+            function updateSession() {
+              secondsActive++;
+              const m = Math.floor(secondsActive / 60)
+                .toString()
+                .padStart(2, "0");
+              const s = (secondsActive % 60).toString().padStart(2, "0");
+              document.getElementById("session-time").innerText = `${m}:${s}`;
+            }
+            setInterval(updateSession, 1000);
+          });
+        </script>
+        <!-- two-col -->
+        <div class="two-col">
+          <!-- Active Projects panel -->
+          <div class="panel panel-anim d1">
+            <div class="panel-head">
+              <span class="panel-title">Active Projects</span>
+              <a href="payments.html" class="panel-action">View All</a>
+            </div>
+            <div class="panel-body">
+              <div class="project-row">
+                <div class="proj-color" style="background: var(--gold)"></div>
+                <div class="proj-info">
+                  <div class="proj-name">Botanica Seed Fund IV</div>
+                  <div class="proj-meta">Lead Investor · 4 members</div>
+                </div>
+                <div class="proj-progress-wrap">
+                  <div class="proj-pct">78%</div>
+                  <div class="prog-bar">
+                    <div class="prog-fill" style="width: 78%"></div>
+                  </div>
+                </div>
+                <div class="proj-status status-active">Active</div>
+              </div>
+              <div class="project-row">
+                <div class="proj-color" style="background: #4a90a4"></div>
+                <div class="proj-info">
+                  <div class="proj-name">Green Valley Venture</div>
+                  <div class="proj-meta">Co-founder · 2 members</div>
+                </div>
+                <div class="proj-progress-wrap">
+                  <div class="proj-pct">45%</div>
+                  <div class="prog-bar">
+                    <div
+                      class="prog-fill"
+                      style="width: 45%; background: #4a90a4"
+                    ></div>
+                  </div>
+                </div>
+                <div class="proj-status status-review">Review</div>
+              </div>
+              <div class="project-row">
+                <div
+                  class="proj-color"
+                  style="background: var(--forest-xl)"
+                ></div>
+                <div class="proj-info">
+                  <div class="proj-name">Alpine Herbal Co.</div>
+                  <div class="proj-meta">Advisor · 6 members</div>
+                </div>
+                <div class="proj-progress-wrap">
+                  <div class="proj-pct">91%</div>
+                  <div class="prog-bar">
+                    <div
+                      class="prog-fill"
+                      style="width: 91%; background: var(--forest-xl)"
+                    ></div>
+                  </div>
+                </div>
+                <div class="proj-status status-active">Active</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meetings panel -->
+          <div class="panel panel-anim d2">
+            <div class="panel-head">
+              <span class="panel-title">Upcoming Meetings</span>
+              <a href="meetings.html" class="panel-action">Schedule</a>
+            </div>
+            <div class="panel-body">
+              <div class="meeting-row">
+                <div class="meeting-time-block">
+                  <div class="mtg-time">10</div>
+                  <div class="mtg-ampm">AM</div>
+                </div>
+                <div class="mtg-info">
+                  <div class="mtg-title">Seed Round Discussion</div>
+                  <div class="mtg-with">with Sarah Malik · Botanica Fund</div>
+                </div>
+                <button class="mtg-join">Join</button>
+              </div>
+              <div class="meeting-row">
+                <div class="meeting-time-block">
+                  <div class="mtg-time">2</div>
+                  <div class="mtg-ampm">PM</div>
+                </div>
+                <div class="mtg-info">
+                  <div class="mtg-title">Pitch Review — Alpine</div>
+                  <div class="mtg-with">with James Rho · Alpine Co.</div>
+                </div>
+                <button
+                  class="mtg-join"
+                  style="background: var(--cream-dk); color: var(--text-mid)"
+                >
+                  Prep
+                </button>
+              </div>
+              <div class="meeting-row">
+                <div class="meeting-time-block">
+                  <div class="mtg-time">4</div>
+                  <div class="mtg-ampm">PM</div>
+                </div>
+                <div class="mtg-info">
+                  <div class="mtg-title">Legal Documents Sign-off</div>
+                  <div class="mtg-with">with Counsel Team</div>
+                </div>
+                <button
+                  class="mtg-join"
+                  style="background: var(--cream-dk); color: var(--text-mid)"
+                >
+                  Prep
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- bottom row -->
+        <div class="three-col">
+          <!-- Documents panel -->
+          <div class="panel panel-anim d3">
+            <div class="panel-head">
+              <span class="panel-title">Recent Documents</span>
+              <a href="documents.html" class="panel-action">All Documents</a>
+            </div>
+            <div class="panel-body">
+              <div class="doc-row">
+                <div class="doc-icon pdf">PDF</div>
+                <div class="doc-info">
+                  <div class="doc-name">Botanica Fund IV — Term Sheet</div>
+                  <div class="doc-date">Updated 2 hours ago</div>
+                </div>
+              </div>
+              <div class="doc-row">
+                <div class="doc-icon xls">XLS</div>
+                <div class="doc-info">
+                  <div class="doc-name">Q2 Financial Projections 2025</div>
+                  <div class="doc-date">Updated yesterday</div>
+                </div>
+              </div>
+              <div class="doc-row">
+                <div class="doc-icon doc">DOC</div>
+                <div class="doc-info">
+                  <div class="doc-name">Partnership Agreement — Alpine Co.</div>
+                  <div class="doc-date">Updated 3 days ago</div>
+                </div>
+              </div>
+              <div class="doc-row">
+                <div class="doc-icon pdf">PDF</div>
+                <div class="doc-info">
+                  <div class="doc-name">Investor Deck — Green Valley v3</div>
+                  <div class="doc-date">Updated last week</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <style>
+            .qa-btn {
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(201, 168, 76, 0.15);
+              border-radius: 12px;
+              padding: 16px 14px;
+              cursor: pointer;
+              text-align: left;
+              transition: all 0.22s ease;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              position: relative;
+              overflow: hidden;
+            }
+            .qa-btn:hover {
+              background: rgba(201, 168, 76, 0.08);
+              border-color: rgba(201, 168, 76, 0.5);
+              transform: translateY(-2px);
+            }
+            .qa-btn:active {
+              transform: scale(0.97);
+            }
+            .qa-btn:hover .qa-icon {
+              color: #c9a84c;
+            }
+            .qa-icon {
+              color: rgba(201, 168, 76, 0.55);
+              transition: color 0.22s ease;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 36px;
+              height: 36px;
+              border-radius: 8px;
+              background: rgba(201, 168, 76, 0.08);
+            }
+            .qa-label {
+              font-size: 13px;
+              font-weight: 600;
+              color: #e8ddc4;
+              margin-bottom: 2px;
+            }
+            .qa-sub {
+              font-size: 11px;
+              color: rgba(232, 221, 196, 0.4);
+            }
+            .qa-open {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              margin-top: auto;
+            }
+            .qa-open span {
+              font-size: 10px;
+              color: rgba(201, 168, 76, 0.4);
+              letter-spacing: 0.05em;
+            }
+            .qa-glow {
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 50px;
+              height: 50px;
+              background: radial-gradient(
+                circle,
+                rgba(201, 168, 76, 0.06) 0%,
+                transparent 70%
+              );
+              pointer-events: none;
+            }
+            .quick-actions {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 10px;
+            }
+            .panel-head {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 18px;
+            }
+            .panel-head-left {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            }
+            .panel-accent {
+              width: 3px;
+              height: 18px;
+              background: #c9a84c;
+              border-radius: 2px;
+            }
+            .panel-title {
+              font-size: 13px;
+              font-weight: 600;
+              color: #c9a84c;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+            }
+            .panel-count {
+              font-size: 11px;
+              color: rgba(201, 168, 76, 0.4);
+              letter-spacing: 0.06em;
+            }
+          </style>
+
+          <div
+            class="panel panel-anim d4"
+            style="
+               background:#0c1f0e;
+              border-radius: 0px;
+              padding: 20px;
+              font-family: &quot;Segoe UI&quot;, system-ui, sans-serif;
+            "
+          >
+            <div class="panel-head">
+              <div class="panel-head-left">
+                <div class="panel-accent"></div>
+                <span class="panel-title">Quick Actions</span>
+              </div>
+              <span class="panel-count">4 actions</span>
+            </div>
+
+            <div class="panel-body">
+              <div class="quick-actions">
+                <button
+                  class="qa-btn"
+                  onclick="window.location.href = 'meetings.html'"
+                >
+                  <div class="qa-glow"></div>
+                  <div class="qa-icon">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="4" width="18" height="18" rx="2" />
+                      <line x1="16" y1="2" x2="16" y2="6" />
+                      <line x1="8" y1="2" x2="8" y2="6" />
+                      <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="qa-label">Schedule Meeting</div>
+                    <div class="qa-sub">Book a new session</div>
+                  </div>
+                  <div class="qa-open">
+                    <span>OPEN</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="10"
+                      height="10"
+                      stroke="rgba(201,168,76,0.4)"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </div>
+                </button>
+
+                <button
+                  class="qa-btn"
+                  onclick="window.location.href = 'documents.html'"
+                >
+                  <div class="qa-glow"></div>
+                  <div class="qa-icon">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                      />
+                      <polyline points="14 2 14 8 20 8" />
+                      <line x1="12" y1="18" x2="12" y2="12" />
+                      <line x1="9" y1="15" x2="15" y2="15" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="qa-label">Upload Document</div>
+                    <div class="qa-sub">Add to your files</div>
+                  </div>
+                  <div class="qa-open">
+                    <span>OPEN</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="10"
+                      height="10"
+                      stroke="rgba(201,168,76,0.4)"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </div>
+                </button>
+
+                <button
+                  class="qa-btn"
+                  onclick="window.location.href = 'video-rooms.html'"
+                >
+                  <div class="qa-glow"></div>
+                  <div class="qa-icon">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polygon points="23 7 16 12 23 17 23 7" />
+                      <rect x="1" y="5" width="15" height="14" rx="2" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="qa-label">Start Video Room</div>
+                    <div class="qa-sub">Launch a live call</div>
+                  </div>
+                  <div class="qa-open">
+                    <span>OPEN</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="10"
+                      height="10"
+                      stroke="rgba(201,168,76,0.4)"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </div>
+                </button>
+
+                <button
+                  class="qa-btn"
+                  onclick="window.location.href = 'payments.html'"
+                >
+                  <div class="qa-glow"></div>
+                  <div class="qa-icon">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="12" y1="1" x2="12" y2="23" />
+                      <path
+                        d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="qa-label">Make Payment</div>
+                    <div class="qa-sub">Send or receive funds</div>
+                  </div>
+                  <div class="qa-open">
+                    <span>OPEN</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="10"
+                      height="10"
+                      stroke="rgba(201,168,76,0.4)"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /content -->
+    </main>
+
+    <script src="assets/js/common.js">
+          // Run this immediately when a page loads
+      if (!localStorage.getItem("token")) {
+          window.location.href = "login.html"; // Adjust path as needed
+      }
+          // Live date
+          const d = new Date();
+          document.getElementById('currentDate').textContent =
+            d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+    </script>
+  </body>
+</html>
