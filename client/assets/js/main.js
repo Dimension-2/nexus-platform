@@ -53,7 +53,7 @@ document.getElementById('doc-upload-form').addEventListener('submit', async (e) 
 
     // Call API with multipart/form-data
     const token = localStorage.getItem("token");
-    const res = await fetch('http://localhost:5000/api/upload', {
+    const res = await fetch('https://nexus-platform-production-0625.up.railway.app/api/upload', {
         method: 'POST',
         headers: { "Authorization": token },
         body: formData // Browser sets Content-Type automatically
@@ -64,7 +64,7 @@ document.getElementById('doc-upload-form').addEventListener('submit', async (e) 
         location.reload();
     }
 });
-const socket = io("http://localhost:5000");
+const socket = io("https://nexus-platform-production-0625.up.railway.app");
 
 socket.on('connect', () => {
     console.log("Connected to Signaling Server:", socket.id);

@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = "https://nexus-platform-production-0625.up.railway.app/api";
 
 // Reusable function to call the backend
 async function apiCall(endpoint, method = 'GET', body = null) {
@@ -16,7 +16,7 @@ async function apiCall(endpoint, method = 'GET', body = null) {
 }// Add this helper to assets/js/api.js
 async function fetchData(endpoint) {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:5000/api${endpoint}`, {
+    const res = await fetch(`https://nexus-platform-production-0625.up.railway.app/api${endpoint}`, {
         headers: { "Authorization": token }
     });
     return await res.json();
